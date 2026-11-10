@@ -1,11 +1,44 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "run-record",
+    "title": "Procedure execution record",
+    "for_each": "select id,code from runs order by code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Run control",
+        "sql": "select code,name,owner,procedure,version,status,due_on,purpose,retain_until from v_run_desk where id=$1",
+        "layout": "record"
+      },
+      {
+        "title": "Steps and ownership",
+        "sql": "select position,name,owner,due_on,state from tasks where run_id=$1 order by position"
+      },
+      {
+        "title": "Evidence and blockers",
+        "sql": "select position,evidence,block_reason,to_char(completed_at at time zone 'UTC','YYYY-MM-DD HH24:MI') as completed_utc from tasks where run_id=$1 order by position"
+      },
+      {
+        "title": "Decision record",
+        "sql": "select actor,action,detail,created_at from events where run_id=$1 order by created_at"
+      }
+    ]
+  },
+  {
+    "name": "procedure-sheet",
+    "title": "Approved procedure sheet",
+    "for_each": "select id,code||'-v'||version as name from procedures order by code,version",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Approval and safeguards",
+        "sql": "select code,version,name,owner,approved_by,approval_evidence,review_due,security_evidence from procedures where id=$1",
+        "layout": "record"
+      },
+      {
+        "title": "Approved steps",
+        "sql": "select ordinality as position,step->>'name' as name,step->>'owner' as owner,step->>'days' as due_days_after_launch from procedures p,jsonb_array_elements(p.steps) with ordinality as s(step,ordinality) where p.id=$1"
+      }
     ]
   }
 ]

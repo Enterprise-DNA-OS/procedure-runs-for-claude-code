@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node: [20, 22]
+        node: [22]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +23,8 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run demo
+      - run: npm run view
+      - run: npm run docs
   postgres:
     runs-on: ubuntu-latest
     services:

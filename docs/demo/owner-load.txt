@@ -1,0 +1,5 @@
+owner        open steps  ready  blocked  overdue
+  -----------  ----------  -----  -------  -------
+  Ben Patel    3           1      1        2      
+  Cara Wilson  3           0      0        1      
+  Ana Lee      2           1      0        0

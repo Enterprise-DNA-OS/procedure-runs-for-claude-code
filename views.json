@@ -1,13 +1,37 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Procedure Runs for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Procedure handover",
+    "subtitle": "Read-only snapshot of local work",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "Ready and blocked",
+        "sql": "select * from v_handover"
+      },
+      {
+        "title": "Owner workload",
+        "sql": "select * from v_owner_load order by owner"
+      }
+    ]
+  },
+  {
+    "name": "attention",
+    "title": "Procedure attention list",
+    "sections": [
+      {
+        "title": "Overdue, quiet and review work",
+        "sql": "select * from v_attention order by due,code"
+      }
+    ]
+  },
+  {
+    "name": "imports",
+    "title": "Imported source review",
+    "sections": [
+      {
+        "title": "Latest Tallyfy snapshots",
+        "sql": "select * from v_import_review order by source,source_id",
+        "note": "Imported statuses are source evidence, not locally verified completions."
       }
     ]
   }

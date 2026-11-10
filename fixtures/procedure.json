@@ -1,0 +1,22 @@
+{
+  "code": "SUPPLIER-PACK",
+  "version": 1,
+  "name": "Supplier evidence pack",
+  "owner": "Rae Morgan",
+  "approved_by": "Kai Thompson",
+  "approval_evidence": "Demonstration review minute REVIEW-001",
+  "security_evidence": "Demonstration access review ACCESS-001",
+  "review_due": "2099-01-01",
+  "steps": [
+    {
+      "name": "Collect supplier evidence",
+      "owner": "Rae Morgan",
+      "days": 0
+    },
+    {
+      "name": "Review evidence and record decision",
+      "owner": "Kai Thompson",
+      "days": 1
+    }
+  ]
+}

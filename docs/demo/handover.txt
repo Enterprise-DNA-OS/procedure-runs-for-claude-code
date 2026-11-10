@@ -1,0 +1,5 @@
+run      position  name                     owner      readiness  due on      overdue days  block reason                  
+  -------  --------  -----------------------  ---------  ---------  ----------  ------------  ------------------------------
+  RUN-101  2         Reconcile review pack    Ben Patel  blocked    2026-11-02  8             Waiting for supplier statement
+  RUN-102  1         Check supplied records   Ben Patel  ready      2026-11-08  2                                           
+  RUN-103  1         Collect ledger evidence  Ana Lee    ready      2026-11-13  0
